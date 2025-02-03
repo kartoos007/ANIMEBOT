@@ -1,4 +1,3 @@
-
 import telebot
 import asyncio
 import flask
@@ -9,17 +8,17 @@ from telethon.tl.types import MessageMediaDocument
 import io
 import os
 
-# ✅ Environment Variables (Set these in Railway)
+# ✅ Environment Variables (Set these in Render)
 BOT_TOKEN = os.getenv("8028216173:AAGpnMeiQaYTfbnp11gNG9NUcQXQcA-vsNk")
 API_ID = int(os.getenv("API_ID", "28215280"))  # Replace with your API ID
 API_HASH = os.getenv("API_HASH", "0ca7536ff612170e7662cee27597c104")  # Replace with your API Hash
 CHANNEL_USERNAME = os.getenv("meraterab")  # Your public channel username (without @)
-SESSION_STRING = os.getenv("", "")  # Leave empty or add a StringSession
+SESSION_STRING = os.getenv("SESSION_STRING", "")  # Leave empty or add a StringSession
 LOG_CHANNEL_ID = int(os.getenv("LOG_CHANNEL_ID", "-1002413516054"))  # Your log channel ID
-PORT = int(os.getenv("PORT", 5000))  # Railway auto-assigns a port
+PORT = int(os.getenv("PORT", 5000))  # Render auto-assigns a port
 
-# ✅ Webhook URL for Railway
-WEBHOOK_URL = f"https://{os.getenv('RAILWAY_STATIC_URL')}/webhook"  # Railway auto-generates this
+# ✅ Webhook URL for Render
+WEBHOOK_URL = f"https://{os.getenv('RENDER_STATIC_URL')}/webhook"  # Render auto-generates this
 
 # ✅ Initialize Telethon client with StringSession
 client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH)
@@ -58,7 +57,7 @@ def send_log(log_message):
 
 @app.route("/", methods=["GET"])
 def home():
-    return "✅ Telegram Bot is Running on Railway!"
+    return "✅ Telegram Bot is Running on Render!"
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
